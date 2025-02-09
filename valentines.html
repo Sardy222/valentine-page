@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            transition: background-color 0.5s;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #ff4d88;
+        }
+        .gif-container {
+            margin: 20px;
+        }
+        .gif {
+            width: 250px;
+            height: auto;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .yes-btn {
+            background-color: #ff66b2;
+            color: white;
+        }
+        .no-btn {
+            background-color: #cccccc;
+            color: black;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .emoji {
+            font-size: 50px;
+        }
+        .newYesBtn {
+            position: absolute;
+            transition: all 0.5s ease-in-out;
+        }
+        #imageContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        .uploaded-image {
+            width: 150px;
+            height: auto;
+            margin: 5px;
+            border-radius: 10px;
+            border: 2px solid pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">Angelitte, will you be my Valentine? 💖</h1>
+        <div id="gifContainer" class="gif-container">
+            <img id="gif" class="gif" src="https://media2.giphy.com/media/e1Tf1eOo6976zuGv3C/giphy.gif?cid=6c09b9521bvzmnvhnccbdhfhrr9uyahmtwqz0kvg1exvetg1&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="Cute Cat">
+        </div>
+        <div id="emoji" class="emoji">😊</div>
+        <button id="yesBtn" class="btn yes-btn" onclick="celebrate()">Yes! 💕</button>
+        <button id="noBtn" class="btn no-btn" onclick="sadReaction()">No... 😢</button>
+
+        <div id="imageContainer"></div>
+    </div>
+
+    <script>
+        function celebrate() {
+            document.body.style.backgroundColor = "#ffccff";
+            document.getElementById("emoji").innerHTML = "🎉😍💖";
+            document.getElementById("question").innerText = "Yay! Best Valentine Ever! 💕🥰";
+            document.getElementById("gif").src = "https://media.giphy.com/media/l4FGI8GoTL7N4DsyI/giphy.gif"; 
+
+            document.querySelectorAll("button").forEach(btn => btn.remove());
+            document.querySelectorAll(".newYesBtn").forEach(btn => btn.remove());
+
+            showImages();
+            confettiEffect();
+        }
+
+        function showImages() {
+            let imageContainer = document.getElementById("imageContainer");
+            imageContainer.style.display = "block";
+            imageContainer.innerHTML = "";
+
+            let images = [
+                "https://i.imgur.com/QSHI5LH.jpeg",
+                "https://i.imgur.com/oKT8L3B.jpeg",
+                "https://i.imgur.com/FD4YXw3.jpeg",
+                "https://i.imgur.com/E5vapGH.jpeg",
+                "https://i.imgur.com/rCbPBP5.jpeg"
+            ];
+
+            images.forEach(imgURL => {
+                let imgElement = document.createElement("img");
+                imgElement.src = imgURL;
+                imgElement.classList.add("uploaded-image");
+                imageContainer.appendChild(imgElement);
+            });
+
+            document.body.appendChild(imageContainer);
+        }
+
+        function sadReaction() {
+            document.body.style.backgroundColor = "#d9d9d9";
+            document.getElementById("emoji").innerHTML = "😢💔";
+            document.getElementById("question").innerText = "Oh no... Please reconsider 😭";
+            document.getElementById("gif").src = "https://media.giphy.com/media/d2lcHJTG5Tscg/giphy.gif"; 
+
+            createNewYesButton();
+        }
+
+        function createNewYesButton() {
+            let newYesBtn = document.createElement("button");
+            newYesBtn.className = "btn yes-btn newYesBtn";
+            newYesBtn.innerText = "Yes! 💕";
+            newYesBtn.onclick = celebrate;
+            
+            newYesBtn.style.top = `${Math.random() * 80 + 10}%`;
+            newYesBtn.style.left = `${Math.random() * 80 + 10}%`;
+
+            document.body.appendChild(newYesBtn);
+        }
+
+        function confettiEffect() {
+            let confetti = document.createElement("div");
+            confetti.innerHTML = "🎊🎊😍💖🎊🎊";
+            confetti.style.position = "absolute";
+            confetti.style.top = "1150px";
+            confetti.style.left = "50%";
+            confetti.style.transform = "translateX(-50%)";
+            confetti.style.fontSize = "50px";
+            document.body.appendChild(confetti);
+        }
+    </script>
+</body>
+</html><ALOASK-SEPARATE-EDITORS><ALOASK-SEPARATE-EDITORS>
